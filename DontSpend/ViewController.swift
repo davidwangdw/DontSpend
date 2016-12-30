@@ -9,10 +9,29 @@
 import UIKit
 
 class ViewController: UIViewController {
+    
+    @IBOutlet weak var amountField: UITextField!
+    @IBOutlet weak var resultLabel0: UITextView!
+    @IBOutlet weak var resultLabel1: UILabel!
+    @IBOutlet weak var resultLabel2: UILabel!
+    @IBOutlet weak var resultLabel3: UILabel!
+    
+    
+    func returnsIfInvested(amount: Double) {
+        
+        
+        
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+    }
+    
+    @IBAction func calculateButton(_ sender: Any) {
+        
+        
+        
     }
 
     override func didReceiveMemoryWarning() {
