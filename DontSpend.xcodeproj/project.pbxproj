@@ -58,14 +58,14 @@
 		210726191E16258B003B01DF /* DontSpend */ = {
 			isa = PBXGroup;
 			children = (
-				2107261A1E16258B003B01DF /* AppDelegate.swift */,
-				2107261C1E16258B003B01DF /* ViewController.swift */,
-				21DF6C8E1E197650006D7AD1 /* CustomTabBar.swift */,
-				2107261E1E16258B003B01DF /* Main.storyboard */,
 				21DF6C901E1983BD006D7AD1 /* AboutViewController.swift */,
+				2107261A1E16258B003B01DF /* AppDelegate.swift */,
 				210726211E16258B003B01DF /* Assets.xcassets */,
-				210726231E16258B003B01DF /* LaunchScreen.storyboard */,
+				21DF6C8E1E197650006D7AD1 /* CustomTabBar.swift */,
 				210726261E16258B003B01DF /* Info.plist */,
+				210726231E16258B003B01DF /* LaunchScreen.storyboard */,
+				2107261E1E16258B003B01DF /* Main.storyboard */,
+				2107261C1E16258B003B01DF /* ViewController.swift */,
 			);
 			path = DontSpend;
 			sourceTree = "<group>";
