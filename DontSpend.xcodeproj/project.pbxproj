@@ -12,6 +12,8 @@
 		210726201E16258B003B01DF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2107261E1E16258B003B01DF /* Main.storyboard */; };
 		210726221E16258B003B01DF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 210726211E16258B003B01DF /* Assets.xcassets */; };
 		210726251E16258B003B01DF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 210726231E16258B003B01DF /* LaunchScreen.storyboard */; };
+		21DF6C8F1E197650006D7AD1 /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DF6C8E1E197650006D7AD1 /* CustomTabBar.swift */; };
+		21DF6C911E1983BD006D7AD1 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DF6C901E1983BD006D7AD1 /* AboutViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +24,8 @@
 		210726211E16258B003B01DF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		210726241E16258B003B01DF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		210726261E16258B003B01DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		21DF6C8E1E197650006D7AD1 /* CustomTabBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
+		21DF6C901E1983BD006D7AD1 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,7 +60,9 @@
 			children = (
 				2107261A1E16258B003B01DF /* AppDelegate.swift */,
 				2107261C1E16258B003B01DF /* ViewController.swift */,
+				21DF6C8E1E197650006D7AD1 /* CustomTabBar.swift */,
 				2107261E1E16258B003B01DF /* Main.storyboard */,
+				21DF6C901E1983BD006D7AD1 /* AboutViewController.swift */,
 				210726211E16258B003B01DF /* Assets.xcassets */,
 				210726231E16258B003B01DF /* LaunchScreen.storyboard */,
 				210726261E16258B003B01DF /* Info.plist */,
@@ -138,6 +144,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				2107261D1E16258B003B01DF /* ViewController.swift in Sources */,
+				21DF6C8F1E197650006D7AD1 /* CustomTabBar.swift in Sources */,
+				21DF6C911E1983BD006D7AD1 /* AboutViewController.swift in Sources */,
 				2107261B1E16258B003B01DF /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -300,6 +308,7 @@
 				2107262B1E16258B003B01DF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
