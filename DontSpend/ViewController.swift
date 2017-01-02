@@ -16,35 +16,37 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     @IBOutlet weak var resultLabel3: UILabel!
     @IBOutlet weak var resultLabel4: UILabel!
     
-    
-    var realReturnFiveYears: Double = 0.0
-    var realReturnTenYears: Double = 0.0
-    var realReturnTwentyYears: Double = 0.0
-    var realReturnThirtyYears: Double = 0.0
-    
     // these are the geometric returns calculated from the bottom website for the years 1928 - 2014
     // http://pages.stern.nyu.edu/~adamodar/New_Home_Page/datafile/histretSP.html
     // http://data.bls.gov/cgi-bin/cpicalc.pl
     
-    let inflation: Double = 0.0307
-    let returnForSP500: Double = 0.0960
-    let returnForShortTerm: Double = 0.0349
-    let returnForLongTerm: Double = 0.0500
+    var inflation: Double = 0.0307
+    var returnForSP500: Double = 0.0960
+    var returnForShortTerm: Double = 0.0349
+    var returnForLongTerm: Double = 0.0500
+    
+    //for real or nominal values
+    var dollarValue: Int = 0
     
     //Creating the alert controller
     let alertController = UIAlertController(title: "Error", message: "Please input a number between 1 and 100,000", preferredStyle: .alert)
     let defaultAction = UIAlertAction(title: "Close", style: .default, handler: nil)
-    
-    //
     
     
     @IBOutlet weak var categoryPicker: UIPickerView!
     
     var categoryPickerData = ["Short Term Treasuries", "Long Term Treasuries (10 Years)", "S&P 500"]
     
-    func returnsIfInvested(amount: Double, rate: Double, years: Double) -> NSNumber{
+    
+    //can clean up this function, no need for so many parameters because they already exist
+    func returnsIfInvested(amount: Double, rate: Double, years: Double, dollar: Int) -> NSNumber{
         
-        return NSNumber(value: amount*pow(1 + rate,years))
+        if dollar == 0 {
+            return NSNumber(value: amount*pow(1 + rate - inflation,years))
+        } else if dollar == 1 {
+            return NSNumber(value: amount*pow(1 + rate,years))
+        }
+        
  
     }
 
@@ -77,9 +79,17 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     @IBAction func calculateButton(_ sender: Any) {
         
         
-        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to:nil, from:nil, for:nil)
-
+        //get values for rates from second tab
+        let secondTab = self.tabBarController?.viewControllers?[1] as! AboutViewController
         
+        inflation = secondTab.inflationRate
+        returnForShortTerm = secondTab.shortTermRate
+        returnForLongTerm = secondTab.longTermRate
+        returnForSP500 = secondTab.SP500Rate
+        dollarValue = secondTab.dollarValue
+        
+        
+        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to:nil, from:nil, for:nil)
         
         guard let text = self.amountField.text, !text.isEmpty else {
             
@@ -134,6 +144,7 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         
     }
     
+    //following code for animations - implement later
     /*
  
  func showLogoView() {
