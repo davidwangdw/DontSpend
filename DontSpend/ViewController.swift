@@ -16,14 +16,15 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     @IBOutlet weak var resultLabel3: UILabel!
     @IBOutlet weak var resultLabel4: UILabel!
     
-    // these are the geometric returns calculated from the bottom website for the years 1928 - 2014
+    // these are the geometric returns calculated from the bottom website for the years 1928 - 2015
     // http://pages.stern.nyu.edu/~adamodar/New_Home_Page/datafile/histretSP.html
-    // http://data.bls.gov/cgi-bin/cpicalc.pl
+    // inflation rates are gathered from this website for the years 1914 - 2016
+    // http://www.tradingeconomics.com/united-states/inflation-cpi
     
-    var inflation: Double = 0.0307
-    var returnForSP500: Double = 0.0960
-    var returnForShortTerm: Double = 0.0349
-    var returnForLongTerm: Double = 0.0500
+    var inflation: Double = 0.0329
+    var returnForSP500: Double = 0.0950
+    var returnForShortTerm: Double = 0.0345
+    var returnForLongTerm: Double = 0.0496
     
     //for real or nominal values
     var dollarValue: Int = 0
@@ -32,10 +33,12 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     let alertController = UIAlertController(title: "Error", message: "Please input a number between 1 and 100,000", preferredStyle: .alert)
     let defaultAction = UIAlertAction(title: "Close", style: .default, handler: nil)
     
+    @IBOutlet weak var containerView: UIView!
+    
     
     @IBOutlet weak var categoryPicker: UIPickerView!
     
-    var categoryPickerData = ["Short Term Treasuries", "Long Term Treasuries (10 Years)", "S&P 500"]
+    var categoryPickerData = ["Short Term (3 Month T. Bill)", "Long Term (10 Year T. Bond)", "S&P 500"]
     
     func returnsIfInvested(amount: Double, rate: Double, years: Double, dollar: Int) -> NSNumber{
         
@@ -53,6 +56,7 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         categoryPicker.dataSource = self
         categoryPicker.delegate = self
         
+        //dismisses keyboard on tap
         let tapRecognizer = UITapGestureRecognizer()
         tapRecognizer.addTarget(self, action: #selector(ViewController.didTapView))
         self.view.addGestureRecognizer(tapRecognizer)
@@ -75,6 +79,8 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     
     @IBAction func calculateButton(_ sender: Any) {
         
+        containerView.isHidden = true
+        
         
         //get values for rates from second tab
         let secondTab = self.tabBarController?.viewControllers?[1] as! AboutViewController
@@ -88,6 +94,7 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         
         UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to:nil, from:nil, for:nil)
         
+        //if text boxes are empty
         guard let text = self.amountField.text, !text.isEmpty else {
             
             present(alertController, animated: true, completion: nil)
@@ -100,6 +107,7 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         
         let amountDollars = Double(amountField.text!)
         
+        //if text boxes contain a number bigger than 100,000
         if let v = amountDollars, v > 100000.00 {
             
             present(alertController, animated: true, completion: nil)
@@ -107,6 +115,7 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
             return
         }
         
+        //apply currency formatting to results
         let currencyFormatter = NumberFormatter()
         currencyFormatter.usesGroupingSeparator = true
         currencyFormatter.numberStyle = NumberFormatter.Style.currency
@@ -138,52 +147,24 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
             self.resultLabel4.text = currencyFormatter.string(from: self.returnsIfInvested(amount: amountDollars!, rate: self.returnForSP500, years: 30, dollar: self.dollarValue))! + " in 30 years"
         }
         
+        fadeInLogo()
         
     }
-    
-    //following code for animations - implement later
-    /*
+
  
- func showLogoView() {
- if !logoVisible {
- logoVisible = true
- containerView.isHidden = true
- logoTop.isHidden = true
- view.addSubview(logoButton)
- }
- }
+    func fadeInLogo() {
  
- func hideLogoView() {
+        // to animate logo
+        containerView.isHidden = false
  
- // to animate logo
+        let logoFade = CABasicAnimation(keyPath: "opacity")
+        logoFade.isRemovedOnCompletion = false
+        logoFade.fromValue = 0
+        logoFade.duration = 1
+        logoFade.toValue = 1
+        containerView.layer.add(logoFade, forKey: "logoFade")
  
- if !logoVisible { return }
- 
- logoVisible = false
- containerView.isHidden = false
- logoTop.isHidden = false
- 
- let logoFade = CABasicAnimation(keyPath: "opacity")
- logoFade.isRemovedOnCompletion = false
- logoFade.fromValue = 1
- logoFade.duration = 1
- logoFade.toValue = 0
- logoButton.layer.add(logoFade, forKey: "logoFade")
- 
- logoButton.removeFromSuperview()
- 
- let panelMover = CABasicAnimation(keyPath: "opacity")
- panelMover.isRemovedOnCompletion = false
- panelMover.fromValue = 0
- panelMover.duration = 1
- panelMover.toValue = 1
- containerView.layer.add(panelMover, forKey: "panelMover")
- logoTop.layer.add(panelMover, forKey: "panelMover")
- 
- 
- }
- 
- */
+    }
  
     public func numberOfComponents(in pickerView: UIPickerView) -> Int
     {

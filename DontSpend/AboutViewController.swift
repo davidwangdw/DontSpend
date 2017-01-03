@@ -10,11 +10,10 @@ import UIKit
 
 class AboutViewController: UIViewController, UITextFieldDelegate {
     
-    var inflationRate: Double = 3.07/100.0
-    var shortTermRate: Double = 3.49/100.0
-    
-    var longTermRate: Double = 5.00/100.0
-    var SP500Rate: Double  = 9.60/100.0
+    var inflationRate: Double = 3.29/100.0
+    var shortTermRate: Double = 3.45/100.0
+    var longTermRate: Double = 4.96/100.0
+    var SP500Rate: Double  = 9.50/100.0
     var dollarValueInt: Int = 0
     
     let alertController = UIAlertController(title: "Error", message: "Please fill all the fields with a number between 0 and 100", preferredStyle: .alert)
@@ -61,7 +60,6 @@ class AboutViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBOutlet weak var dollarValue: UISegmentedControl!
-    
     @IBOutlet weak var inflationRateField: UITextField!
     @IBOutlet weak var shortTermRateField: UITextField!
     @IBOutlet weak var longTermRateField: UITextField!
@@ -70,15 +68,15 @@ class AboutViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func defaultButton(_ sender: Any) {
         
-        inflationRateField.text = "3.07"
-        shortTermRateField.text = "3.49"
-        longTermRateField.text = "5.00"
-        SP500RateField.text = "9.60"
+        inflationRateField.text = "3.29"
+        shortTermRateField.text = "3.45"
+        longTermRateField.text = "4.96"
+        SP500RateField.text = "9.50"
         
-        inflationRate = 3.07/100.0
-        shortTermRate = 3.49/100.0
-        longTermRate = 5.00/100.0
-        SP500Rate = 9.60/100.0
+        inflationRate = 3.29/100.0
+        shortTermRate = 3.45/100.0
+        longTermRate = 4.96/100.0
+        SP500Rate = 9.50/100.0
         
     }
 
