@@ -12,11 +12,12 @@ class AboutViewController: UIViewController, UITextFieldDelegate {
     
     var inflationRate: Double = 3.07/100.0
     var shortTermRate: Double = 3.49/100.0
+    
     var longTermRate: Double = 5.00/100.0
     var SP500Rate: Double  = 9.60/100.0
     var dollarValueInt: Int = 0
     
-    let alertController = UIAlertController(title: "Error", message: "Please input a number between 1 and 100", preferredStyle: .alert)
+    let alertController = UIAlertController(title: "Error", message: "Please fill all the fields with a number between 0 and 100", preferredStyle: .alert)
     let defaultAction = UIAlertAction(title: "Close", style: .default, handler: nil)
     
     @IBAction func dollarValueChanged(_ sender: Any) {
@@ -74,11 +75,18 @@ class AboutViewController: UIViewController, UITextFieldDelegate {
         longTermRateField.text = "5.00"
         SP500RateField.text = "9.60"
         
-        //check to make sure this works
-        self.changeValueButton()
+        inflationRate = 3.07/100.0
+        shortTermRate = 3.49/100.0
+        longTermRate = 5.00/100.0
+        SP500Rate = 9.60/100.0
         
     }
 
+    
+    @IBAction func githubButton(_ sender: Any) {
+        UIApplication.shared.openURL(URL(string: "https://github.com/davidwangdw/dontspend")!)
+    }
+    
     @IBAction func linkButton(_ sender: Any) {
         UIApplication.shared.openURL(URL(string: "http://www.davidwangdw.com")!)
     }

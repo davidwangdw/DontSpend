@@ -37,17 +37,14 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     
     var categoryPickerData = ["Short Term Treasuries", "Long Term Treasuries (10 Years)", "S&P 500"]
     
-    
-    //can clean up this function, no need for so many parameters because they already exist
     func returnsIfInvested(amount: Double, rate: Double, years: Double, dollar: Int) -> NSNumber{
         
         if dollar == 0 {
             return NSNumber(value: amount*pow(1 + rate - inflation,years))
-        } else if dollar == 1 {
+        } else {
             return NSNumber(value: amount*pow(1 + rate,years))
         }
         
- 
     }
 
 
@@ -86,7 +83,7 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         returnForShortTerm = secondTab.shortTermRate
         returnForLongTerm = secondTab.longTermRate
         returnForSP500 = secondTab.SP500Rate
-        dollarValue = secondTab.dollarValue
+        dollarValue = secondTab.dollarValueInt
         
         
         UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to:nil, from:nil, for:nil)
@@ -118,27 +115,27 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         
         if selection == 0 {
             
-            self.resultLabel1.text = currencyFormatter.string(from: self.returnsIfInvested(amount: amountDollars!, rate: self.returnForShortTerm, years: 5))! + " in 5 years"
-            self.resultLabel2.text = currencyFormatter.string(from: self.returnsIfInvested(amount: amountDollars!, rate: self.returnForShortTerm, years: 10))! + " in 10 years"
-            self.resultLabel3.text = currencyFormatter.string(from: self.returnsIfInvested(amount: amountDollars!, rate: self.returnForShortTerm, years: 20))! + " in 20 years"
-            self.resultLabel4.text = currencyFormatter.string(from: self.returnsIfInvested(amount: amountDollars!, rate: self.returnForShortTerm, years: 30))! + " in 30 years"
+            self.resultLabel1.text = currencyFormatter.string(from: self.returnsIfInvested(amount: amountDollars!, rate: self.returnForShortTerm, years: 5, dollar: self.dollarValue))! + " in 5 years"
+            self.resultLabel2.text = currencyFormatter.string(from: self.returnsIfInvested(amount: amountDollars!, rate: self.returnForShortTerm, years: 10, dollar: self.dollarValue))! + " in 10 years"
+            self.resultLabel3.text = currencyFormatter.string(from: self.returnsIfInvested(amount: amountDollars!, rate: self.returnForShortTerm, years: 20, dollar: self.dollarValue))! + " in 20 years"
+            self.resultLabel4.text = currencyFormatter.string(from: self.returnsIfInvested(amount: amountDollars!, rate: self.returnForShortTerm, years: 30, dollar: self.dollarValue))! + " in 30 years"
             
             
             
         } else if selection == 1 {
-            self.resultLabel1.text = currencyFormatter.string(from: self.returnsIfInvested(amount: amountDollars!, rate: self.returnForLongTerm, years: 5))! + " in 5 years"
-            self.resultLabel2.text = currencyFormatter.string(from: self.returnsIfInvested(amount: amountDollars!, rate: self.returnForLongTerm, years: 10))! + " in 10 years"
-            self.resultLabel3.text = currencyFormatter.string(from: self.returnsIfInvested(amount: amountDollars!, rate: self.returnForLongTerm, years: 20))! + " in 20 years"
-            self.resultLabel4.text = currencyFormatter.string(from: self.returnsIfInvested(amount: amountDollars!, rate: self.returnForLongTerm, years: 30))! + " in 30 years"
+            self.resultLabel1.text = currencyFormatter.string(from: self.returnsIfInvested(amount: amountDollars!, rate: self.returnForLongTerm, years: 5, dollar: self.dollarValue))! + " in 5 years"
+            self.resultLabel2.text = currencyFormatter.string(from: self.returnsIfInvested(amount: amountDollars!, rate: self.returnForLongTerm, years: 10, dollar: self.dollarValue))! + " in 10 years"
+            self.resultLabel3.text = currencyFormatter.string(from: self.returnsIfInvested(amount: amountDollars!, rate: self.returnForLongTerm, years: 20, dollar: self.dollarValue))! + " in 20 years"
+            self.resultLabel4.text = currencyFormatter.string(from: self.returnsIfInvested(amount: amountDollars!, rate: self.returnForLongTerm, years: 30, dollar: self.dollarValue))! + " in 30 years"
             
             
             
         } else if selection == 2 {
             
-            self.resultLabel1.text = currencyFormatter.string(from: self.returnsIfInvested(amount: amountDollars!, rate: self.returnForSP500, years: 5))! + " in 5 years"
-            self.resultLabel2.text = currencyFormatter.string(from: self.returnsIfInvested(amount: amountDollars!, rate: self.returnForSP500, years: 10))! + " in 10 years"
-            self.resultLabel3.text = currencyFormatter.string(from: self.returnsIfInvested(amount: amountDollars!, rate: self.returnForSP500, years: 20))! + " in 20 years"
-            self.resultLabel4.text = currencyFormatter.string(from: self.returnsIfInvested(amount: amountDollars!, rate: self.returnForSP500, years: 30))! + " in 30 years"
+            self.resultLabel1.text = currencyFormatter.string(from: self.returnsIfInvested(amount: amountDollars!, rate: self.returnForSP500, years: 5, dollar: self.dollarValue))! + " in 5 years"
+            self.resultLabel2.text = currencyFormatter.string(from: self.returnsIfInvested(amount: amountDollars!, rate: self.returnForSP500, years: 10, dollar: self.dollarValue))! + " in 10 years"
+            self.resultLabel3.text = currencyFormatter.string(from: self.returnsIfInvested(amount: amountDollars!, rate: self.returnForSP500, years: 20, dollar: self.dollarValue))! + " in 20 years"
+            self.resultLabel4.text = currencyFormatter.string(from: self.returnsIfInvested(amount: amountDollars!, rate: self.returnForSP500, years: 30, dollar: self.dollarValue))! + " in 30 years"
         }
         
         
