@@ -82,7 +82,7 @@ class AboutViewController: UIViewController, UITextFieldDelegate {
 
     
     @IBAction func githubButton(_ sender: Any) {
-        UIApplication.shared.openURL(URL(string: "https://github.com/davidwangdw/dontspend")!)
+        UIApplication.shared.openURL(URL(string: "https://github.com/davidwangdw/dontspend/blob/master/README.md")!)
     }
     
     @IBAction func linkButton(_ sender: Any) {
