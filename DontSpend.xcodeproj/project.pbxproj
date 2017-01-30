@@ -12,6 +12,7 @@
 		210726201E16258B003B01DF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2107261E1E16258B003B01DF /* Main.storyboard */; };
 		210726221E16258B003B01DF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 210726211E16258B003B01DF /* Assets.xcassets */; };
 		210726251E16258B003B01DF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 210726231E16258B003B01DF /* LaunchScreen.storyboard */; };
+		21C893581E3DCA70001058B1 /* RetirementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C893571E3DCA70001058B1 /* RetirementViewController.swift */; };
 		21DF6C8F1E197650006D7AD1 /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DF6C8E1E197650006D7AD1 /* CustomTabBar.swift */; };
 		21DF6C911E1983BD006D7AD1 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DF6C901E1983BD006D7AD1 /* AboutViewController.swift */; };
 /* End PBXBuildFile section */
@@ -24,6 +25,7 @@
 		210726211E16258B003B01DF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		210726241E16258B003B01DF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		210726261E16258B003B01DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		21C893571E3DCA70001058B1 /* RetirementViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RetirementViewController.swift; sourceTree = "<group>"; };
 		21DF6C8E1E197650006D7AD1 /* CustomTabBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
 		21DF6C901E1983BD006D7AD1 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -65,6 +67,7 @@
 				210726261E16258B003B01DF /* Info.plist */,
 				210726231E16258B003B01DF /* LaunchScreen.storyboard */,
 				2107261E1E16258B003B01DF /* Main.storyboard */,
+				21C893571E3DCA70001058B1 /* RetirementViewController.swift */,
 				2107261C1E16258B003B01DF /* ViewController.swift */,
 			);
 			path = DontSpend;
@@ -97,7 +100,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0810;
-				LastUpgradeCheck = 0810;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = "David Wang";
 				TargetAttributes = {
 					210726161E16258B003B01DF = {
@@ -144,6 +147,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2107261D1E16258B003B01DF /* ViewController.swift in Sources */,
+				21C893581E3DCA70001058B1 /* RetirementViewController.swift in Sources */,
 				21DF6C8F1E197650006D7AD1 /* CustomTabBar.swift in Sources */,
 				21DF6C911E1983BD006D7AD1 /* AboutViewController.swift in Sources */,
 				2107261B1E16258B003B01DF /* AppDelegate.swift in Sources */,
@@ -190,6 +194,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -239,6 +244,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;

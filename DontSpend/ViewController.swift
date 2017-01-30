@@ -83,7 +83,7 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         
         
         //get values for rates from second tab
-        let secondTab = self.tabBarController?.viewControllers?[1] as! AboutViewController
+        let secondTab = self.tabBarController?.viewControllers?[2] as! AboutViewController
         
         inflation = secondTab.inflationRate
         returnForShortTerm = secondTab.shortTermRate
@@ -95,6 +95,7 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to:nil, from:nil, for:nil)
         
         //if text boxes are empty
+        
         guard let text = self.amountField.text, !text.isEmpty else {
             
             present(alertController, animated: true, completion: nil)
