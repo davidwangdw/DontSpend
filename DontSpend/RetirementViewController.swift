@@ -5,7 +5,7 @@
 //  Created by David Wang on 1/29/17.
 //  Copyright © 2017 David Wang. All rights reserved.
 //
-// palm tree tab icon is designed by Vexels.com
+//  palm tree tab icon is designed by Vexels.com
 
 import UIKit
 
@@ -38,7 +38,7 @@ class RetirementViewController: UIViewController, UITextFieldDelegate, UIPickerV
     
     var yearDifference: Double = 0.0
     
-    let alertController = UIAlertController(title: "Error", message: "Please input a number between 1 and 1,000,000, and make sure your target retirement amount is more than your current net worth", preferredStyle: .alert)
+    let alertController = UIAlertController(title: "Error", message: "Please fill all fields with a number between 1 and 1,000,000, and make sure your target retirement amount is more than your current net worth", preferredStyle: .alert)
     let defaultAction = UIAlertAction(title: "Close", style: .default, handler: nil)
     
     @IBAction func frequencyControlChanged(_ sender: Any) {
@@ -55,7 +55,6 @@ class RetirementViewController: UIViewController, UITextFieldDelegate, UIPickerV
         }
         
     }
-
     
     @IBAction func calculateButton(_ sender: Any) {
         
@@ -63,8 +62,6 @@ class RetirementViewController: UIViewController, UITextFieldDelegate, UIPickerV
         let amtPerYearDouble = Double(amtPerYear.text!)
         let targetRetirementAmtDouble = Double(targetRetirementAmt.text!)
         let spendAmountDouble = Double(spendAmount.text!)
-        
-        
         
         //get values for rates from second tab
         let secondTab = self.tabBarController?.viewControllers?[2] as! AboutViewController
@@ -84,21 +81,20 @@ class RetirementViewController: UIViewController, UITextFieldDelegate, UIPickerV
         if let i = currentNWDouble, i < 1000000, let j = amtPerYearDouble, j < 1000000, let l = targetRetirementAmtDouble, l < 1000000, let m = spendAmountDouble, m < 1000000, i < l {
             
             
-            
             if selection == 0 {
                 let yearsUntilRetirementDouble: Double = yearsUntilRetirementFunc(netWorth: currentNWDouble!, rate: returnForShortTerm, targetWorth: targetRetirementAmtDouble!, payment: amtPerYearDouble!)
                 
                 yearsUntilRetirement.text = String(format: "%.2f", yearsUntilRetirementDouble)
                 
                 if onceOrMonth == 0 { //once
-                    let newYearsUntilRetirement = yearsUntilRetirementFunc(netWorth: currentNWDouble! + spendAmountDouble!, rate: returnForShortTerm, targetWorth: targetRetirementAmtDouble!, payment: amtPerYearDouble!)
+                    let newYearsUntilRetirement: Double = yearsUntilRetirementFunc(netWorth: currentNWDouble! + spendAmountDouble!, rate: returnForShortTerm, targetWorth: targetRetirementAmtDouble!, payment: amtPerYearDouble!)
                     
                     yearDifference = yearsUntilRetirementDouble - newYearsUntilRetirement
     
                 }
             
                 if onceOrMonth == 1 { //monthly
-                    let newYearsUntilRetirement = yearsUntilRetirementFunc(netWorth: currentNWDouble!, rate: returnForShortTerm, targetWorth: targetRetirementAmtDouble!, payment: amtPerYearDouble! + spendAmountDouble!)
+                    let newYearsUntilRetirement: Double = yearsUntilRetirementFunc(netWorth: currentNWDouble!, rate: returnForShortTerm, targetWorth: targetRetirementAmtDouble!, payment: amtPerYearDouble! + spendAmountDouble!)
         
                     yearDifference = yearsUntilRetirementDouble - newYearsUntilRetirement
                 }
@@ -110,19 +106,17 @@ class RetirementViewController: UIViewController, UITextFieldDelegate, UIPickerV
                 yearsUntilRetirement.text = String(format: "%.2f", yearsUntilRetirementDouble)
                 
                 if onceOrMonth == 0 { //once
-                    let newYearsUntilRetirement = yearsUntilRetirementFunc(netWorth: currentNWDouble! + spendAmountDouble!, rate: returnForLongTerm, targetWorth: targetRetirementAmtDouble!, payment: amtPerYearDouble!)
+                    let newYearsUntilRetirement: Double = yearsUntilRetirementFunc(netWorth: currentNWDouble! + spendAmountDouble!, rate: returnForLongTerm, targetWorth: targetRetirementAmtDouble!, payment: amtPerYearDouble!)
                     
                     yearDifference = yearsUntilRetirementDouble - newYearsUntilRetirement
                     
                 }
                 
                 if onceOrMonth == 1 { //monthly
-                    let newYearsUntilRetirement = yearsUntilRetirementFunc(netWorth: currentNWDouble!, rate: returnForLongTerm, targetWorth: targetRetirementAmtDouble!, payment: amtPerYearDouble! + spendAmountDouble!)
+                    let newYearsUntilRetirement: Double = yearsUntilRetirementFunc(netWorth: currentNWDouble!, rate: returnForLongTerm, targetWorth: targetRetirementAmtDouble!, payment: amtPerYearDouble! + spendAmountDouble!)
                     
                     yearDifference = yearsUntilRetirementDouble - newYearsUntilRetirement
                 }
-
-                
                 
             } else if selection == 2 {
                 let yearsUntilRetirementDouble: Double = yearsUntilRetirementFunc(netWorth: currentNWDouble!, rate: returnForSP500, targetWorth: targetRetirementAmtDouble!, payment: amtPerYearDouble!)
@@ -130,20 +124,18 @@ class RetirementViewController: UIViewController, UITextFieldDelegate, UIPickerV
                 yearsUntilRetirement.text = String(format: "%.2f", yearsUntilRetirementDouble)
                 
                 if onceOrMonth == 0 { //once
-                    let newYearsUntilRetirement = yearsUntilRetirementFunc(netWorth: currentNWDouble! + spendAmountDouble!, rate: returnForSP500, targetWorth: targetRetirementAmtDouble!, payment: amtPerYearDouble!)
+                    let newYearsUntilRetirement: Double = yearsUntilRetirementFunc(netWorth: currentNWDouble! + spendAmountDouble!, rate: returnForSP500, targetWorth: targetRetirementAmtDouble!, payment: amtPerYearDouble!)
                     
                     yearDifference = yearsUntilRetirementDouble - newYearsUntilRetirement
                     
                 }
                 
                 if onceOrMonth == 1 { //monthly
-                    let newYearsUntilRetirement = yearsUntilRetirementFunc(netWorth: currentNWDouble!, rate: returnForSP500, targetWorth: targetRetirementAmtDouble!, payment: amtPerYearDouble! + spendAmountDouble!)
+                    let newYearsUntilRetirement: Double = yearsUntilRetirementFunc(netWorth: currentNWDouble!, rate: returnForSP500, targetWorth: targetRetirementAmtDouble!, payment: amtPerYearDouble! + spendAmountDouble!)
                     
                     yearDifference = yearsUntilRetirementDouble - newYearsUntilRetirement
+                    
                 }
-
-                
-                
             }
             
             summaryField.text = "If you saved $" + spendAmount.text! + " instead of spending it, you would be able to retire " + String(format: "%.2f", yearDifference) + " years, or " + String(format: "%.2f", yearDifference * 365) + " days earlier!"
@@ -221,7 +213,6 @@ class RetirementViewController: UIViewController, UITextFieldDelegate, UIPickerV
         let pickerLabel = UILabel()
         let titleData = categoryPickerData[row]
         let myTitle = NSAttributedString(string: titleData, attributes: [NSForegroundColorAttributeName:UIColor(red: 207.0/255.0, green: 211.0/255.0, blue: 212.0/255.0, alpha: 1)])
-        
         
         pickerLabel.attributedText = myTitle
         pickerLabel.textAlignment = .center

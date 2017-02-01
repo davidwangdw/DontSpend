@@ -16,6 +16,8 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     @IBOutlet weak var resultLabel3: UILabel!
     @IBOutlet weak var resultLabel4: UILabel!
     
+    @IBOutlet weak var frequencyControl: UISegmentedControl!
+    
     // these are the geometric returns calculated from the bottom website for the years 1928 - 2015
     // http://pages.stern.nyu.edu/~adamodar/New_Home_Page/datafile/histretSP.html
     // inflation rates are gathered from this website for the years 1914 - 2016
@@ -28,6 +30,8 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     
     //for real or nominal values
     var dollarValue: Int = 0
+    
+    var onceOrMonth: Int = 0
     
     //Creating the alert controller
     let alertController = UIAlertController(title: "Error", message: "Please input a number between 1 and 100,000", preferredStyle: .alert)
@@ -42,10 +46,20 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     
     func returnsIfInvested(amount: Double, rate: Double, years: Double, dollar: Int) -> NSNumber{
         
-        if dollar == 0 {
-            return NSNumber(value: amount*pow(1 + rate - inflation,years))
-        } else {
-            return NSNumber(value: amount*pow(1 + rate,years))
+        if onceOrMonth == 0 {
+            if dollar == 0 {
+                return NSNumber(value: amount*pow(1 + rate - inflation,years))
+            } else {
+                return NSNumber(value: amount*pow(1 + rate,years))
+            }
+        }
+        
+        else { //onceOrMonth == 1
+            if dollar == 0 {
+                return NSNumber(value: (amount*(pow(1 + (rate - inflation),years) - 1)) / (rate - inflation))
+            } else {
+                return NSNumber(value: (amount*pow(1 + (rate),years) - 1) / (rate))
+            }
         }
         
     }
@@ -73,11 +87,28 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
 
     }
     
+    @IBAction func frequencyControlChanged(_ sender: Any) {
+        
+        switch frequencyControl.selectedSegmentIndex {
+            
+        case 0:
+            onceOrMonth = 0
+        case 1:
+            onceOrMonth = 1
+        default:
+            ()
+            
+        }
+        
+    }
+    
     override var prefersStatusBarHidden: Bool {
         return true
     }
     
     @IBAction func calculateButton(_ sender: Any) {
+        
+        
         
         containerView.isHidden = true
         
@@ -116,41 +147,44 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
             return
         }
         
+        //print(selection)
+        
         //apply currency formatting to results
         let currencyFormatter = NumberFormatter()
         currencyFormatter.usesGroupingSeparator = true
         currencyFormatter.numberStyle = NumberFormatter.Style.currency
         currencyFormatter.locale = NSLocale.current
-        
-        
-        if selection == 0 {
             
-            self.resultLabel1.text = currencyFormatter.string(from: self.returnsIfInvested(amount: amountDollars!, rate: self.returnForShortTerm, years: 5, dollar: self.dollarValue))! + " in 5 years"
-            self.resultLabel2.text = currencyFormatter.string(from: self.returnsIfInvested(amount: amountDollars!, rate: self.returnForShortTerm, years: 10, dollar: self.dollarValue))! + " in 10 years"
-            self.resultLabel3.text = currencyFormatter.string(from: self.returnsIfInvested(amount: amountDollars!, rate: self.returnForShortTerm, years: 20, dollar: self.dollarValue))! + " in 20 years"
-            self.resultLabel4.text = currencyFormatter.string(from: self.returnsIfInvested(amount: amountDollars!, rate: self.returnForShortTerm, years: 30, dollar: self.dollarValue))! + " in 30 years"
+            if selection == 0 {
+                
+                self.resultLabel1.text = currencyFormatter.string(from: self.returnsIfInvested(amount: amountDollars!, rate: self.returnForShortTerm, years: 5, dollar: self.dollarValue))! + " in 5 years"
+                self.resultLabel2.text = currencyFormatter.string(from: self.returnsIfInvested(amount: amountDollars!, rate: self.returnForShortTerm, years: 10, dollar: self.dollarValue))! + " in 10 years"
+                self.resultLabel3.text = currencyFormatter.string(from: self.returnsIfInvested(amount: amountDollars!, rate: self.returnForShortTerm, years: 20, dollar: self.dollarValue))! + " in 20 years"
+                self.resultLabel4.text = currencyFormatter.string(from: self.returnsIfInvested(amount: amountDollars!, rate: self.returnForShortTerm, years: 30, dollar: self.dollarValue))! + " in 30 years"
+                
+                fadeInLogo()
+                
+            } else if selection == 1 {
+                self.resultLabel1.text = currencyFormatter.string(from: self.returnsIfInvested(amount: amountDollars!, rate: self.returnForLongTerm, years: 5, dollar: self.dollarValue))! + " in 5 years"
+                self.resultLabel2.text = currencyFormatter.string(from: self.returnsIfInvested(amount: amountDollars!, rate: self.returnForLongTerm, years: 10, dollar: self.dollarValue))! + " in 10 years"
+                self.resultLabel3.text = currencyFormatter.string(from: self.returnsIfInvested(amount: amountDollars!, rate: self.returnForLongTerm, years: 20, dollar: self.dollarValue))! + " in 20 years"
+                self.resultLabel4.text = currencyFormatter.string(from: self.returnsIfInvested(amount: amountDollars!, rate: self.returnForLongTerm, years: 30, dollar: self.dollarValue))! + " in 30 years"
+                
+                fadeInLogo()
+                
+            } else if selection == 2 {
+                
+                self.resultLabel1.text = currencyFormatter.string(from: self.returnsIfInvested(amount: amountDollars!, rate: self.returnForSP500, years: 5, dollar: self.dollarValue))! + " in 5 years"
+                self.resultLabel2.text = currencyFormatter.string(from: self.returnsIfInvested(amount: amountDollars!, rate: self.returnForSP500, years: 10, dollar: self.dollarValue))! + " in 10 years"
+                self.resultLabel3.text = currencyFormatter.string(from: self.returnsIfInvested(amount: amountDollars!, rate: self.returnForSP500, years: 20, dollar: self.dollarValue))! + " in 20 years"
+                self.resultLabel4.text = currencyFormatter.string(from: self.returnsIfInvested(amount: amountDollars!, rate: self.returnForSP500, years: 30, dollar: self.dollarValue))! + " in 30 years"
+
+                fadeInLogo()
             
-            
-            
-        } else if selection == 1 {
-            self.resultLabel1.text = currencyFormatter.string(from: self.returnsIfInvested(amount: amountDollars!, rate: self.returnForLongTerm, years: 5, dollar: self.dollarValue))! + " in 5 years"
-            self.resultLabel2.text = currencyFormatter.string(from: self.returnsIfInvested(amount: amountDollars!, rate: self.returnForLongTerm, years: 10, dollar: self.dollarValue))! + " in 10 years"
-            self.resultLabel3.text = currencyFormatter.string(from: self.returnsIfInvested(amount: amountDollars!, rate: self.returnForLongTerm, years: 20, dollar: self.dollarValue))! + " in 20 years"
-            self.resultLabel4.text = currencyFormatter.string(from: self.returnsIfInvested(amount: amountDollars!, rate: self.returnForLongTerm, years: 30, dollar: self.dollarValue))! + " in 30 years"
-            
-            
-            
-        } else if selection == 2 {
-            
-            self.resultLabel1.text = currencyFormatter.string(from: self.returnsIfInvested(amount: amountDollars!, rate: self.returnForSP500, years: 5, dollar: self.dollarValue))! + " in 5 years"
-            self.resultLabel2.text = currencyFormatter.string(from: self.returnsIfInvested(amount: amountDollars!, rate: self.returnForSP500, years: 10, dollar: self.dollarValue))! + " in 10 years"
-            self.resultLabel3.text = currencyFormatter.string(from: self.returnsIfInvested(amount: amountDollars!, rate: self.returnForSP500, years: 20, dollar: self.dollarValue))! + " in 20 years"
-            self.resultLabel4.text = currencyFormatter.string(from: self.returnsIfInvested(amount: amountDollars!, rate: self.returnForSP500, years: 30, dollar: self.dollarValue))! + " in 30 years"
         }
         
-        fadeInLogo()
-        
     }
+    
 
  
     func fadeInLogo() {
