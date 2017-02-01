@@ -39,7 +39,6 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     
     @IBOutlet weak var containerView: UIView!
     
-    
     @IBOutlet weak var categoryPicker: UIPickerView!
     
     var categoryPickerData = ["Short Term (3 Month T. Bill)", "Long Term (10 Year T. Bond)", "S&P 500"]
@@ -108,10 +107,7 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     
     @IBAction func calculateButton(_ sender: Any) {
         
-        
-        
         containerView.isHidden = true
-        
         
         //get values for rates from second tab
         let secondTab = self.tabBarController?.viewControllers?[2] as! AboutViewController
@@ -121,7 +117,6 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         returnForLongTerm = secondTab.longTermRate
         returnForSP500 = secondTab.SP500Rate
         dollarValue = secondTab.dollarValueInt
-        
         
         UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to:nil, from:nil, for:nil)
         
@@ -133,7 +128,6 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
             
             return
         }
-        
         
         let selection = categoryPicker.selectedRow(inComponent: 0)
         
@@ -184,8 +178,6 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         }
         
     }
-    
-
  
     func fadeInLogo() {
  
