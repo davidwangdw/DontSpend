@@ -38,7 +38,7 @@ class RetirementViewController: UIViewController, UITextFieldDelegate, UIPickerV
     
     var yearDifference: Double = 0.0
     
-    let alertController = UIAlertController(title: "Error", message: "Please fill all fields with a number between 1 and 1,000,000, and make sure your target retirement amount is more than your current net worth", preferredStyle: .alert)
+    let alertController = UIAlertController(title: "Error", message: "Please fill all fields with a number between 1 and 9,000,000, and make sure your target retirement amount is more than your current net worth", preferredStyle: .alert)
     let defaultAction = UIAlertAction(title: "Close", style: .default, handler: nil)
     
     @IBAction func frequencyControlChanged(_ sender: Any) {
@@ -78,7 +78,7 @@ class RetirementViewController: UIViewController, UITextFieldDelegate, UIPickerV
         currencyFormatter.numberStyle = NumberFormatter.Style.currency
         currencyFormatter.locale = NSLocale.current
         
-        if let i = currentNWDouble, i < 1000000, let j = amtPerYearDouble, j < 1000000, let l = targetRetirementAmtDouble, l < 1000000, let m = spendAmountDouble, m < 1000000, i < l {
+        if let i = currentNWDouble, i < 9000000, let j = amtPerYearDouble, j < 9000000, let l = targetRetirementAmtDouble, l < 9000000, let m = spendAmountDouble, m < 9000000, i < l {
             
             
             if selection == 0 {
@@ -180,7 +180,7 @@ class RetirementViewController: UIViewController, UITextFieldDelegate, UIPickerV
     
     func yearsUntilRetirementFunc(netWorth: Double, rate: Double, targetWorth: Double, payment: Double) -> Double {
         //figure out correct equation for this
-        return log((targetWorth * rate + payment) / (payment + netWorth * rate))/log(1 + rate)
+        return log((targetWorth * (rate-inflation) + payment) / (payment + netWorth * (rate-inflation)))/log(1 + (rate-inflation))
     }
 
     func returnOfAnnuity(payment: Double, rate: Double, years: Double) {
