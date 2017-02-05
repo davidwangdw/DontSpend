@@ -15,6 +15,7 @@
 		21C893581E3DCA70001058B1 /* RetirementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C893571E3DCA70001058B1 /* RetirementViewController.swift */; };
 		21DF6C8F1E197650006D7AD1 /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DF6C8E1E197650006D7AD1 /* CustomTabBar.swift */; };
 		21DF6C911E1983BD006D7AD1 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DF6C901E1983BD006D7AD1 /* AboutViewController.swift */; };
+		21FC96221E46C69C004BAA0C /* RetirementExplanationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21FC96211E46C69C004BAA0C /* RetirementExplanationViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		21C893571E3DCA70001058B1 /* RetirementViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RetirementViewController.swift; sourceTree = "<group>"; };
 		21DF6C8E1E197650006D7AD1 /* CustomTabBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
 		21DF6C901E1983BD006D7AD1 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
+		21FC96211E46C69C004BAA0C /* RetirementExplanationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RetirementExplanationViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +70,7 @@
 				210726231E16258B003B01DF /* LaunchScreen.storyboard */,
 				2107261E1E16258B003B01DF /* Main.storyboard */,
 				21C893571E3DCA70001058B1 /* RetirementViewController.swift */,
+				21FC96211E46C69C004BAA0C /* RetirementExplanationViewController.swift */,
 				2107261C1E16258B003B01DF /* ViewController.swift */,
 			);
 			path = DontSpend;
@@ -147,6 +150,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2107261D1E16258B003B01DF /* ViewController.swift in Sources */,
+				21FC96221E46C69C004BAA0C /* RetirementExplanationViewController.swift in Sources */,
 				21C893581E3DCA70001058B1 /* RetirementViewController.swift in Sources */,
 				21DF6C8F1E197650006D7AD1 /* CustomTabBar.swift in Sources */,
 				21DF6C911E1983BD006D7AD1 /* AboutViewController.swift in Sources */,
