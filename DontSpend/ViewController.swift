@@ -55,9 +55,9 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         
         else { //onceOrMonth == 1
             if dollar == 0 {
-                return NSNumber(value: (amount*(pow(1 + (rate - inflation),years) - 1)) / (rate - inflation))
+                return NSNumber(value: ((12*amount)*(pow(1 + (rate - inflation),years) - 1)) / (rate - inflation))
             } else {
-                return NSNumber(value: (amount*pow(1 + (rate),years) - 1) / (rate))
+                return NSNumber(value: ((12*amount)*pow(1 + (rate),years) - 1) / (rate))
             }
         }
         

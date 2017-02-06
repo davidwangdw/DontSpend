@@ -48,7 +48,7 @@ class RetirementExplanationViewController: UIViewController {
         let monthlyExpensesDouble = Double(monthlyExpenses.text!)
         
         if let i = monthlyExpensesDouble, i < 100000 {
-            let retirementAmount = monthlyExpensesDouble! * 25
+            let retirementAmount = monthlyExpensesDouble! * 25 * 12
             
             self.resultLabel.text = currencyFormatter.string(from: NSNumber(value:retirementAmount))!
             
@@ -67,6 +67,10 @@ class RetirementExplanationViewController: UIViewController {
 
     @IBAction func cancelScreen(sender: AnyObject) {
         dismiss(animated: true, completion: nil)
+    }
+    
+    override var prefersStatusBarHidden: Bool {
+        return true
     }
 
 }
