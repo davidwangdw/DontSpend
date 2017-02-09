@@ -34,7 +34,6 @@ class RetirementExplanationViewController: UIViewController {
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
         
         self.resultLabel.text = ""
-
         
     }
     
@@ -63,7 +62,6 @@ class RetirementExplanationViewController: UIViewController {
     func didTapView(){
         self.view.endEditing(true)
     }
-
 
     @IBAction func cancelScreen(sender: AnyObject) {
         dismiss(animated: true, completion: nil)

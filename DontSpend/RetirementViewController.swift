@@ -36,7 +36,7 @@ class RetirementViewController: UIViewController, UITextFieldDelegate {
     
     var yearDifference: Double = 0.0
     
-    let alertController = UIAlertController(title: "Error", message: "Please fill all fields with a number between 1 and 9,000,000, and make sure your target retirement amount is more than your current net worth", preferredStyle: .alert)
+    let alertController = UIAlertController(title: "Error", message: "Please fill all fields with a number between 1 and 9,000,000, and make sure your target retirement amount is more than your current net worth. If you just want to see how long it'll take you to retire on your current savings rate, enter 0 as your spend amount.", preferredStyle: .alert)
     let defaultAction = UIAlertAction(title: "Close", style: .default, handler: nil)
     
     @IBAction func frequencyControlChanged(_ sender: Any) {
@@ -51,7 +51,6 @@ class RetirementViewController: UIViewController, UITextFieldDelegate {
             ()
             
         }
-        
     }
     
     @IBAction func calculateButton(_ sender: Any) {
@@ -74,14 +73,11 @@ class RetirementViewController: UIViewController, UITextFieldDelegate {
         currencyFormatter.numberStyle = NumberFormatter.Style.currency
         currencyFormatter.locale = NSLocale.current
         
-
-        
         if let i = currentNWDouble, i < 9000000, let j = amtPerYearDouble, j < 9000000, let l = targetRetirementAmtDouble, l < 9000000, spendAmountDouble == nil, i < l {
             
             let yearsUntilRetirementDouble: Double = yearsUntilRetirementFunc(netWorth: currentNWDouble!, rate: returnForSP500 - inflation, targetWorth: targetRetirementAmtDouble!, payment: 12.0*amtPerYearDouble!)
             
             yearsUntilRetirement.text = String(format: "%.2f", yearsUntilRetirementDouble)
-
             
             return
         }
@@ -103,9 +99,7 @@ class RetirementViewController: UIViewController, UITextFieldDelegate {
         
                     yearDifference = yearsUntilRetirementDouble - newYearsUntilRetirement
                 }
-                
-                
-        
+            
             summaryField.text = "If you saved $" + spendAmount.text! + " instead of spending it, you would be able to retire " + String(format: "%.2f", yearDifference) + " years, or " + String(format: "%.2f", yearDifference * 365) + " days earlier!"
             
             self.view.endEditing(true)
@@ -131,8 +125,6 @@ class RetirementViewController: UIViewController, UITextFieldDelegate {
         
         self.view.backgroundColor = UIColor(red: 93/255.0, green: 100/255.0, blue: 118/255.0, alpha: 1.0)
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
-        
-        // Do any additional setup after loading the view.
     }
     
     override var prefersStatusBarHidden: Bool {
@@ -141,12 +133,9 @@ class RetirementViewController: UIViewController, UITextFieldDelegate {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
-    
     func yearsUntilRetirementFunc(netWorth: Double, rate: Double, targetWorth: Double, payment: Double) -> Double {
-        //figure out correct equation for this
         return log((targetWorth * (rate-inflation) + payment) / (payment + netWorth * (rate-inflation)))/log(1 + (rate-inflation))
     }
 
@@ -157,7 +146,6 @@ class RetirementViewController: UIViewController, UITextFieldDelegate {
             return NSNumber(value: amount*pow(1 + rate - inflation,years))
     }
 
-    
     func didTapView(){
         self.view.endEditing(true)
     }

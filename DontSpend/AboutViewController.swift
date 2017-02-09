@@ -31,7 +31,6 @@ class AboutViewController: UIViewController, UITextFieldDelegate {
             ()
             
         }
-        
     }
     
     @IBAction func changeValueButton(_ sender: Any) {
@@ -64,7 +63,6 @@ class AboutViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var shortTermRateField: UITextField!
     @IBOutlet weak var longTermRateField: UITextField!
     @IBOutlet weak var SP500RateField: UITextField!
-
     
     @IBAction func defaultButton(_ sender: Any) {
         
@@ -114,7 +112,6 @@ class AboutViewController: UIViewController, UITextFieldDelegate {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     //only allows one decimal place
@@ -133,6 +130,5 @@ class AboutViewController: UIViewController, UITextFieldDelegate {
     func didTapView(){
         self.view.endEditing(true)
     }
-
 
 }

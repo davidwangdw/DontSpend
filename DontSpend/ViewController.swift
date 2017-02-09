@@ -60,9 +60,7 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
                 return NSNumber(value: ((12*amount)*pow(1 + (rate),years) - 1) / (rate))
             }
         }
-        
     }
-
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -98,7 +96,6 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
             ()
             
         }
-        
     }
     
     override var prefersStatusBarHidden: Bool {
